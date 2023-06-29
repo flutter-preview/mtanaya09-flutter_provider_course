@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_course/hooks.dart';
 
 void main() {
   runApp(
@@ -8,7 +7,7 @@ void main() {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const HooksPage(),
+      home: const HomePage(),
     ),
   );
 }
@@ -24,3 +23,10 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+/* 
+State, action, reducer - That's really all there is to redux 
+
+What is redux?
+Redux is a state management architecture library that successfully distributes data across widgets in a repetitive manner. It manages the state of an application through a unidirectional flow of data.
+*/
