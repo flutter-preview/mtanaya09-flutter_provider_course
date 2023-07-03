@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-Stream<String> getTime() => Stream.periodic(
-      const Duration(seconds: 1),
-      (_) => DateTime.now().toIso8601String(),
-    );
-
 class HooksPage extends HookWidget {
   const HooksPage({super.key});
   @override
   Widget build(BuildContext context) {
-    final dateTime = useStream(getTime());
-
+    final controller = useTextEditingController();
+    final text = useState('');
+    useEffect(
+      () {
+        controller.addListener(() {
+          text.value = controller.text;
+        });
+        return null;
+      },
+      [controller], //pass as a key
+    );
     return Scaffold(
       appBar: AppBar(
-        title: Text(dateTime.data ?? 'Home Page'),
+        title: const Text('Home Page'),
       ),
+      body: Column(children: [
+        TextField(
+          controller: controller,
+        ),
+        Text("You typed ${text.value}"),
+      ],),
     );
   }
 }
